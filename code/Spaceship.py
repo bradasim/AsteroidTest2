@@ -8,7 +8,17 @@ class Spaceship:
         self.ScreenWidth = ScreenWidth
         self.ScreenHeight = ScreenHeight
         self.DisplaySurf = DisplaySurf
+        self.Rect = self.spaceship.get_rect()
 
-    def Move(self, x, y):
-        if (x>0 and x<self.ScreenWidth):
-            self.DisplaySurf.blit(self.spaceship, (x, y))
+    def Move(self):
+
+        if( pygame.key.get_pressed()[pygame.K_RIGHT] != 0 ):
+            self.Rect = self.Rect.move(3, 0)
+        elif( pygame.key.get_pressed()[pygame.K_LEFT] != 0 ):
+            self.Rect = self.Rect.move(-3, 0)
+        elif( pygame.key.get_pressed()[pygame.K_UP] != 0 ):
+            self.Rect = self.Rect.move(0, -3)
+        elif( pygame.key.get_pressed()[pygame.K_DOWN] != 0 ):
+            self.Rect = self.Rect.move(0, 3)
+
+        self.DisplaySurf.blit(self.spaceship, self.Rect)

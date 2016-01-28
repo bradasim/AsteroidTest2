@@ -1,6 +1,8 @@
 import pygame, sys
 import Spaceship
 
+from Spaceship import *
+
 from pygame.locals import *
 
 
@@ -11,15 +13,16 @@ fpsClock = pygame.time.Clock()
 
 DisplayWidth = 800
 DisplayHeight = 600
-DISPLAYSURF = pygame.display.set_mode((DisplayWidth, DisplayHeight), 0, 32)
+screen = pygame.display.set_mode((DisplayWidth, DisplayHeight), 0, 32)
 pygame.display.set_caption('Asteroid Test')
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 
+pygame.key.set_repeat(10, 10)
 
 #BGIMAGE = pygame.image.load('flippybackground.png')
 spaceshipSpritePath = 'spaceship.png'
-Ship = Spaceship.Spaceship(DISPLAYSURF, spaceshipSpritePath, DisplayWidth, DisplayHeight)
+Ship = Spaceship(screen, spaceshipSpritePath, DisplayWidth, DisplayHeight)
 
 bContinue = True
 
@@ -30,9 +33,10 @@ while bContinue:
             bContinue = False
         else:
 
-            Ship.Move(DisplayWidth/2, DisplayHeight/2)
+            screen.fill(BLACK)
+            Ship.Move()
 
-            pygame.display.update()
+            pygame.display.flip()
             fpsClock.tick(FPS)
 
 
