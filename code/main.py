@@ -7,6 +7,8 @@ from pygame.locals import *
 
 
 pygame.init()
+pygame.font.init()
+font = pygame.font.SysFont("monospace", 12)
 
 FPS = 30 # frames per second setting
 fpsClock = pygame.time.Clock()
@@ -15,8 +17,8 @@ DisplayWidth = 800
 DisplayHeight = 600
 screen = pygame.display.set_mode((DisplayWidth, DisplayHeight), 0, 32)
 pygame.display.set_caption('Asteroid Test')
-WHITE = (255, 255, 255)
-BLACK = (0, 0, 0)
+
+
 
 pygame.key.set_repeat(10, 10)
 
@@ -34,7 +36,8 @@ while bContinue:
         else:
 
             screen.fill(BLACK)
-            Ship.Move()
+            Ship.Move(font)
+
 
             pygame.display.flip()
             fpsClock.tick(FPS)
